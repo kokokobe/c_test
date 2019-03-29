@@ -4,8 +4,9 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/build")
 add_definitions("-std=c++11")
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
-
+# 开启测试
+enable_testing()
 set(CMAKE_CXX_STANDARD 14)
-
-add_executable(${PROJECT_NAME} main.cpp int_test/limits.cpp int_test/limits.h)
+add_executable(${PROJECT_NAME} maintest.cpp test/data_size.cpp test/data_size.h test/data_limit.cpp test/data_char.cpp test/data_float.cpp)
 target_link_libraries(${PROJECT_NAME} ${CONAN_LIBS})
+add_test(MyTest ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME})
